@@ -13,6 +13,8 @@
           <span :class="{ completed: task.completed }">{{ task.title }}</span>
           <button @click="toggleCompletion(task)">✔️</button>
           <button @click="deleteTask(index)">🗑️</button>
+          <button @click="updateTask(index)">xxx</button>
+
         </li>
       </ul>
     </div>
@@ -26,9 +28,19 @@
     setup() {
       const newTask = ref('');
       const tasks = ref([]);
-  
+      const isEditing = ref(false);
+      const isEditedId = ref(null);
       const addTask = () => {
-        if (newTask.value.trim() !== '') {
+        if (newTask.value.trim() == '') return;
+
+        if(isEditing.value == true)
+      {
+        tasks.value[isEditedId.value].title = newTask.value;
+        isEditing.value = false;
+        newTask.value = '';
+      }
+      else
+        {
           tasks.value.push({ title: newTask.value, completed: false });
           newTask.value = '';
         }
@@ -41,13 +53,22 @@
       const deleteTask = (index) => {
         tasks.value.splice(index, 1);
       };
+      const updateTask = (index) => {
+        newTask.value = tasks.value[index].title;
+        isEditing.value = true;
+        isEditedId.value = index;
+      };
   
       return {
         newTask,
         tasks,
+        isEditing,
+        isEditedId,
         addTask,
         toggleCompletion,
         deleteTask,
+        updateTask,
+
       };
     },
   };
