@@ -11,5 +11,7 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 import { createApp } from 'vue';
 import Hello from './composants/hello.vue';
+import Todo from './composants/TodoApp.vue';
 
 createApp(Hello).mount('#app');
+createApp(Todo).mount('#todo');
