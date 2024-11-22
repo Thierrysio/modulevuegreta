@@ -6,7 +6,7 @@
         @keyup.enter="addTask"
         placeholder="Ajouter une nouvelle tâche"
       >
-      <button @click="addTask">Ajouter</button>
+      <button @click="addTask">{{ isEditing ? 'Modifier' : 'Ajouter' }}</button>
   
       <ul>
         <li v-for="(task, index) in tasks" :key="index">
