@@ -37,7 +37,7 @@ export default {
     };
 
     onMounted(() => {
-      fetchProducts();
+        getProduits();
     });
 
     return {
