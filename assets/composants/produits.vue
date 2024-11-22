@@ -18,8 +18,10 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-name: 'ProduitApp',
-setup() {
+
+export default {
+  name: 'ProduitApp',
+  setup() {
     const produits = ref([]);
 
     const getProduits = async () => {
@@ -33,7 +35,16 @@ setup() {
         console.error(error);
       }
     };
-}
+
+    onMounted(() => {
+      fetchProducts();
+    });
+
+    return {
+        produits,
+    };
+  },
+};
 
 
 
