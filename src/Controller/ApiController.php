@@ -26,4 +26,11 @@ class ApiController extends AbstractController
         return $util->GetJsonResponse($request,$produits);
 
     }
+    #[Route('/api/voirproducts', name: 'app_api_voirproducts')]
+    public function voirProduit()
+    {
+        return $this->render('api/voirProduits.html.twig', [
+        ]);
+    }
+
 }
