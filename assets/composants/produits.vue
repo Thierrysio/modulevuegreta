@@ -17,6 +17,26 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+name: 'ProduitApp',
+setup() {
+    const produits = ref([]);
+
+    const getProduits = async () => {
+      try {
+        const response = await fetch('/api/products/');
+        if (!response.ok) {
+          throw new Error('Erreur lors du chargement des produits');
+        }
+        produits.value = await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+}
+
+
+
 </script>
 
 <style scoped>
